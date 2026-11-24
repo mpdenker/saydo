@@ -1,0 +1,10 @@
+{
+  "name": "saydo",
+  "private": true,
+  "type": "module",
+  "description": "Voice task manager, installable to the iPhone home screen. No runtime dependencies.",
+  "scripts": {
+    "test": "node --test && TZ=Asia/Tokyo node --test && TZ=America/Los_Angeles node --test",
+    "serve": "python3 -m http.server 8080"
+  }
+}

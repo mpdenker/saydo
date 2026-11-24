@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <title>Saydo</title>
+  <meta name="apple-mobile-web-app-title" content="Saydo">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="src/ui.js"></script>
+</head>
+<body>
+  <header class="top">
+    <h1 id="app-name">Saydo</h1>
+    <div class="segmented" role="tablist" aria-label="Lists">
+      <button type="button" role="tab" id="tab-active" data-view="active" aria-selected="true" aria-controls="list">
+        Tasks <span class="count" id="count-active"></span>
+      </button>
+      <button type="button" role="tab" id="tab-done" data-view="done" aria-selected="false" aria-controls="list">
+        Completed <span class="count" id="count-done"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="list" role="tabpanel" aria-labelledby="tab-active"></main>
+
+  <footer class="bottom">
+    <button type="button" id="add-btn" class="fab" aria-label="Add a task">
+      <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></svg>
+    </button>
+  </footer>
+
+  <!-- New task -->
+  <dialog id="capture" class="sheet" aria-labelledby="capture-title">
+    <form method="dialog" id="capture-form">
+      <div class="sheet-bar">
+        <button type="submit" value="cancel" class="link" formnovalidate>Cancel</button>
+        <h2 id="capture-title">New Task</h2>
+        <button type="submit" value="add" id="capture-add" class="link strong" disabled>Add</button>
+      </div>
+      <p id="capture-hint" class="hint" hidden></p>
+      <textarea id="capture-text" rows="3" placeholder="What needs doing?" enterkeyhint="done"
+                autocapitalize="sentences" autocomplete="off" aria-label="Task"></textarea>
+    </form>
+  </dialog>
+
+  <!-- Edit task -->
+  <dialog id="edit" class="sheet" aria-labelledby="edit-title">
+    <form method="dialog" id="edit-form">
+      <div class="sheet-bar">
+        <button type="submit" value="cancel" class="link" formnovalidate>Cancel</button>
+        <h2 id="edit-title">Edit Task</h2>
+        <button type="submit" value="save" id="edit-save" class="link strong">Save</button>
+      </div>
+      <textarea id="edit-text" rows="3" enterkeyhint="done" autocapitalize="sentences" aria-label="Task"></textarea>
+      <dl class="stamps">
+        <dt>Added</dt><dd id="edit-created"></dd>
+        <dt id="edit-done-label">Done</dt><dd id="edit-done"></dd>
+      </dl>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+    <span id="toast-text"></span>
+    <button type="button" id="toast-action" class="link strong" hidden></button>
+  </div>
+</body>
+</html>
